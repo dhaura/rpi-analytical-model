@@ -21,3 +21,15 @@ The data from the above resource characterization will be taken as input by the 
 
 ### Outputs
 * Computed power consumption
+
+## Experimental Setup
+The experimental setup was created with three `Raspberry Pi 3 Model B Plus` devices, using `K3s` as the container orchestration system.
+
+The experiment was conducted by differentiating the number of containers deployed
+and the number of requests sent while the power consumption and other utilization
+parameters were logged. The following tools were used for the said purpose.
+* **kubectl** - Control the number of containers deployed.
+* **JMeter** - Control the number of requests sent to the application.
+* Developed **[Kubernetes Logger](https://github.com/Lakshan-Banneheke/rpi-logger/blob/main/rpi-logger-v3.py)** - Log Utilization parameters of the edge cluster.
+* **USB Power Meter** - Measure power consumption of the edge cluster.
+* Developed **[Data Parser]((https://github.com/Lakshan-Banneheke/rpi-logger/blob/main/Parser/test-data-parser.py))** - Aggregate the final dataset.
