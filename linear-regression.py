@@ -8,25 +8,25 @@ import joblib
 
 import matplotlib.pyplot as plt
 
-# Load the dataset
-df = pd.read_csv('data/final-test-data-with-headers.csv')
-
-# Split the dataset into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.2)
 
 # create a MinMaxScaler object
 scaler = MinMaxScaler()
 
+# Load the dataset
+df = pd.read_csv('data/final-test-data-with-headers.csv')
+
 # normalize the independent variables
-X_train_normalized = scaler.fit_transform(X_train)
-X_test_normalized = scaler.fit_transform(X_test)
+normalized_df = scaler.fit_transform(df.iloc[:, :-1])
+
+# Split the dataset into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(normalized_df, df.iloc[:, -1], test_size=0.2)
 
 # Fit the linear regression model to the training data
 regressor = LinearRegression()
-regressor.fit(X_train_normalized, y_train)
+regressor.fit(X_train, y_train)
 
 # Make predictions on the test set
-y_pred = regressor.predict(X_test_normalized)
+y_pred = regressor.predict(X_test)
 
 # Evaluate the model's performance
 print("MAE:", mean_absolute_error(y_test, y_pred))
