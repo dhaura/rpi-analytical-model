@@ -15,5 +15,4 @@ import util.lrtrainer as lrt
 
 # Sample
 X_sample = [[2, 4, 2460314074.985385, 311636.2853386947]]
-
 lrt.train_model('final-test-data-v2.csv', X_sample, 8.508, 'v2', True)
