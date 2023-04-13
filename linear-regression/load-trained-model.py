@@ -12,10 +12,10 @@ lrd.load_and_predict('final-test-data-v1.csv', X_sample, 8.508, 'v1', True)
 X_sample = [[2, 4, 2460314074.985385, 311636.2853386947]]
 lrd.load_and_predict('final-test-data-v2.csv', X_sample, 8.508, 'v2', True)
 
-# # V3
-# X_sample = [[2, 4, 2460314074.985385]]
-# lrd.load_and_predict('final-test-data-v3.csv', X_sample, 8.508, 'v3', True)
-#
-# # V4
-# X_sample = [[2, 2460314074.985385]]
-# lrd.load_and_predict('final-test-data-v4.csv', X_sample, 8.508, 'v4', True)
+# V3
+X_sample = [[2, 4, 2460314074.985385]]
+lrd.load_and_predict('final-test-data-v3.csv', X_sample, 8.508, 'v3', True)
+
+# V4
+X_sample = [[2, 2460314074.985385]]
+lrd.load_and_predict('final-test-data-v4.csv', X_sample, 8.508, 'v4', True)
