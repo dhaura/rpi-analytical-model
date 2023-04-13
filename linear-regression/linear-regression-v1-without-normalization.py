@@ -1,6 +1,6 @@
 """
 
-V1 - Normalized
+V1 - Not Normalized
 
 Input Parameters (6)
 
@@ -17,5 +17,4 @@ import util.lrtrainer as lrt
 
 # Sample
 X_sample = [[1187612200.712264, 673290.5449273121, 2, 4, 2460314074.985385, 311636.2853386947]]
-
-lrt.train_model('final-test-data-v1.csv', X_sample, 8.508, 'v1', True)
+lrt.train_model('final-test-data-v1.csv', X_sample, 8.508, 'v1-not-normalized', False)

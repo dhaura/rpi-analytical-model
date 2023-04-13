@@ -1,24 +1,21 @@
-import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
+import util.lrloader as lrd
 
-import joblib
+# V1 - Not normalized
+X_sample = [[1187612200.712264, 673290.5449273121, 2, 4, 2460314074.985385, 311636.2853386947]]
+lrd.load_and_predict('final-test-data-v1.csv', X_sample, 8.508, 'v1-not-normalized', False)
 
-# create a MinMaxScaler object
-scaler = MinMaxScaler()
+# V1 - Normalized
+X_sample = [[1187612200.712264, 673290.5449273121, 2, 4, 2460314074.985385, 311636.2853386947]]
+lrd.load_and_predict('final-test-data-v1.csv', X_sample, 8.508, 'v1', True)
 
-# Load the dataset
-df = pd.read_csv('../data/final-test-data-with-headers.csv')
+# V2
+X_sample = [[2, 4, 2460314074.985385, 311636.2853386947]]
+lrd.load_and_predict('final-test-data-v2.csv', X_sample, 8.508, 'v2', True)
 
-# normalize the independent variables
-normalized_df = scaler.fit_transform(df.iloc[:, :-1])
-
-# Load the model
-loaded_model = joblib.load('../models/analytical-model-v8.joblib')
-
-# Sample
-X_new = [[1187612200.712264, 673290.5449273121, 2, 4, 2460314074.985385, 311636.2853386947]]
-X_new_normalized = scaler.transform(X_new)
-
-# Make predictions
-y_new_pred = loaded_model.predict(X_new_normalized)
-print(y_new_pred)  # actual = 8.508
+# # V3
+# X_sample = [[2, 4, 2460314074.985385]]
+# lrd.load_and_predict('final-test-data-v3.csv', X_sample, 8.508, 'v3', True)
+#
+# # V4
+# X_sample = [[2, 2460314074.985385]]
+# lrd.load_and_predict('final-test-data-v4.csv', X_sample, 8.508, 'v4', True)

@@ -20,7 +20,7 @@ def plot_and_save(input_parameter):
     plot = sns.pairplot(df, x_vars=[input_parameter], y_vars=['power'], diag_kind='kde')
     plot.set(xlabel=parameter_map[input_parameter], ylabel='Power [W]')
     plt.subplots_adjust(bottom=0.3)
-    plt.savefig('figures/eda-' + input_parameter + '.pdf', format='pdf')
+    plt.savefig('figures/eda/eda-' + input_parameter + '.pdf', format='pdf')
     plt.show()
 
 
