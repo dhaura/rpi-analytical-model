@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 scaler = MinMaxScaler()
 
 # Load the dataset
-df = pd.read_csv('data/final-test-data-without-master.csv')
+df = pd.read_csv('../data/final-test-data-without-master.csv')
 
 # normalize the independent variables
 normalized_df = scaler.fit_transform(df.iloc[:, :-1])
@@ -47,7 +47,7 @@ y_new_pred = regressor.predict(X_new_normalized)
 print(y_new_pred)  # actual = 8.508
 
 # Save the model
-joblib.dump(regressor, 'models/analytical-model-v8-without-master-util.joblib')
+joblib.dump(regressor, '../models/analytical-model-v8-without-master-util.joblib')
 
 # Plot the predicted values against the actual values
 plt.scatter(y_test, y_pred, color='blue')

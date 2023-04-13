@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
@@ -7,12 +8,18 @@ import joblib
 
 import matplotlib.pyplot as plt
 
+
+# create a MinMaxScaler object
+scaler = MinMaxScaler()
+
 # Load the dataset
-df = pd.read_csv('data/final-test-data-with-headers.csv')
+df = pd.read_csv('../data/final-test-data-with-headers.csv')
+
+# normalize the independent variables
+normalized_df = scaler.fit_transform(df.iloc[:, :-1])
 
 # Split the dataset into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, :-1], df.iloc[:, -1], test_size=0.2)
-
+X_train, X_test, y_train, y_test = train_test_split(normalized_df, df.iloc[:, -1], test_size=0.2)
 
 # Fit the linear regression model to the training data
 regressor = LinearRegression()
@@ -34,13 +41,14 @@ print(intercept)
 
 # Sample
 X_new = [[1187612200.712264, 673290.5449273121, 2, 4, 2460314074.985385, 311636.2853386947]]
+X_new_normalized = scaler.transform(X_new)
 
 # Make predictions
-y_new_pred = regressor.predict(X_new)
+y_new_pred = regressor.predict(X_new_normalized)
 print(y_new_pred)  # actual = 8.508
 
 # Save the model
-joblib.dump(regressor, 'models/analytical-model-v8-without-normalization.joblib')
+joblib.dump(regressor, '../models/analytical-model-v8.joblib')
 
 # Plot the predicted values against the actual values
 plt.scatter(y_test, y_pred, color='blue')
