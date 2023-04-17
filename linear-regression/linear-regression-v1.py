@@ -7,7 +7,7 @@ Input Parameters (6)
 1. Master CPU Utilization (nano cores)
 2. Master Memory Utilization (KB)
 3. Number of Worker Nodes
-4. Number of Container
+4. Number of Containers
 5. Container CPU Utilization Sum (nano cores)
 6. Container Memory Utilization Sum (KB)
 

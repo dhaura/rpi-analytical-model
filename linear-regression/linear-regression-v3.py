@@ -5,7 +5,7 @@ V3 - Normalized
 Input Parameters (3)
 
 1. Number of Worker Nodes
-2. Number of Container
+2. Number of Containers
 3. Container CPU Utilization Sum (nano cores)
 
 """
