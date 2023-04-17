@@ -5,7 +5,7 @@ V2 - Normalized
 Input Parameters (4)
 
 1. Number of Worker Nodes
-2. Number of Container
+2. Number of Containers
 3. Container CPU Utilization Sum (nano cores)
 4. Container Memory Utilization Sum (KB)
 
