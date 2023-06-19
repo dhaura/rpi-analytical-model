@@ -1,6 +1,6 @@
 """
 
-V3 - Normalized
+V6 - Normalized
 
 Input Parameters (4)
 
