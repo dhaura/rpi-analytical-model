@@ -73,3 +73,5 @@ The power consumption of the master node consists of its CPU and memory utilizat
 
 ### Final Regression Model
 After analyzing the above equation using linear regression models, the following analytical model (equivalent to linear regression model `v3`) was finalized for estimating the power consumption of the edge cluster.
+
+<img src="https://github.com/dhaura/rpi-analytical-model/assets/57411348/d2c70981-791c-4d89-80c5-9a2295b63f5f" alt="lr-model" width="630" height="160">
