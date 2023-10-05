@@ -68,10 +68,53 @@ Instead of evaluating the power usage of individual containers, the decision was
 
 The power consumption of the master node consists of its CPU and memory utilization contributions and the power attributed to the containers deployed in the master node. Since the major power consumption of a worker node consists of the containers that are deployed in the node, they are attributed to the power consumption of that node.
 
-![11](https://user-images.githubusercontent.com/57411348/230965175-9f7bb6ab-57e6-4d2b-8f12-13bfb05a6afb.png)
-![1](https://user-images.githubusercontent.com/57411348/230965195-63a4b4d6-4ec2-4408-81e5-c64159a52244.png)
+$`P_{total}=C_1+p_{master}+\sum_{i=1}^{n_{worker}}p_{worker, i}`$
+
+Where,
+
+- $`p_{master}=C_2u_{master}+C_3m_{master}+p_{k, total, master}+C_8`$
+
+- $`p_{worker, i}=p_{k, total, worker, i}+C_4`$
+
+- $`p_{k, total}=p_{k, total, master}+p_{k, total, worker}=\sum_{i=1}^{n_k}p_{k, i}`$
+
+- $`p_{k, total, master}=\sum_{i=1}^{n_{k, master}}p_{k, master, i}`$
+
+- $`p_{k, total, worker}=\sum_{i=1}^{n_{k, worker}}p_{k, worker, i}=\sum_{i=1}^{n_{worker}}p_{k, total, worker, i}`$
+
+- $`p_{k, total, worker, i}=\sum_{j=1}^{n_{k, worker, i}}p_{k, worker, i, j}`$
+
+- $`p_{k, i}=C_5+C_6u_{k, i}+C_7m_{k, i}`$
+
+Now the initial equation can be re-written as,
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+p_{k, total, master}+C_8+\sum_{i=1}^{n_{worker}}(p_{k, total, worker, i}+C_4)`$
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+p_{k, total, master}+C_8+\sum_{i=1}^{n_{worker}}p_{k, total, worker, i}+\sum_{i=1}^{n_{worker}}C_4`$
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+p_{k, total, master}+C_8+p_{k, total, worker}+C_4n_{worker}`$
+
+Rearrange, 
+
+$` P_{total}=C_1+C_8+C_2u_{master}+C_3m_{master}+C_4n_{worker}+p_{k, total, master}+p_{k, total, worker}`$
+
+Consider $` C_1 + C_8 `$ as a single constant $` C_1 `$ and, replace $`p_{k, total, master}+p_{k, total, worker} `$ with $`p_{k, total} `$,
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+C_4n_{worker}+p_{k, total}`$ 
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+C_4n_{worker}+\sum_{i=1}^{n_k}p_{k, i}`$
+
+$` P_{total}=C_1+C_2u_{master}+C_3m_{master}+C_4n_{worker}+\sum_{i=1}^{n_k}(C_5+C_6u_{k, i}+C_7m_{k, i})`$
+
+Finally, following the above simplification steps, the equation is simplified to the following final equation.
+
+$`P_{total}=C_1+C_2u_{master}+C_3m_{master}+C_4n_{worker}+C_5n_k+C_6\sum_{i=1}^{n_k}u_{k, i}+C_7\sum_{i=1}^{n_k}m_{k, i}`$
 
 ### Final Regression Model
 After analyzing the above equation using linear regression models, the following analytical model (equivalent to linear regression model `v3`) was finalized for estimating the power consumption of the edge cluster.
+ 
+$` P_{total}=C_1+C_2n_{worker}+C_3n_k+C_4u_{k,total} `$
 
-<img src="https://github.com/dhaura/rpi-analytical-model/assets/57411348/d2c70981-791c-4d89-80c5-9a2295b63f5f" alt="lr-model">
+Where,
+
+ - $`u_{k, total}=\sum_{i=1}^{n_k}u_{k, i}`$
